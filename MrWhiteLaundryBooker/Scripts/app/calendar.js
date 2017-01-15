@@ -2,21 +2,21 @@
     return {
         restrict: 'E',
         templateUrl: '../Scripts/app/templates/calendar.html',
+        require: "^ngController",
         scope: {
-            selected : '@'
+            selected : '='
         },
-        link: function (scope) {
+        link: function (scope, elem, attrs, parentController) {
             scope.selected = _removeTime(scope.selected || moment());
             scope.month = scope.selected.clone();
             var start = scope.selected.clone();
-            //start.date(1);
-            //_removeTime(start.day(0));
             _removeTime(start.startOf('week'));
 
             _buildMonth(scope, start, scope.month);
 
             scope.select = function (day) {
                 scope.selected = day.date;
+                parentController.setSelected(day);
             };           
         }
     }
@@ -31,7 +31,7 @@
         while (!done) {
             scope.weeks.push({ days: _buildWeek(date.clone(), month) });
             date.add(1, "w");
-            done = count++ > 3;//&& monthIndex !== date.month();
+            done = count++ > 3;
             monthIndex = date.month();
         }
     }

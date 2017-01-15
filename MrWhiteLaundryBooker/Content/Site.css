@@ -33,7 +33,6 @@ calendar {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   background: white;
-  width: 300px;
   border: solid 1px #CCC;
   margin-bottom: 10px;
 }
@@ -94,7 +93,7 @@ calendar > div.week > span.day {
   border-left: solid 1px #CCC;
   font-size: 0.75em;
   text-align: center;
-  height: 30px;
+  height: 60px;
   line-height: 30px !important;
   display: inline-block;
   vertical-align: middle;
