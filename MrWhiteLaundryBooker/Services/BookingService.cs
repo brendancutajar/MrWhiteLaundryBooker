@@ -31,7 +31,9 @@ namespace MrWhiteLaundryBooker.Services
 
         public IList<Booking> GetBookings()
         {
-            throw new NotImplementedException();
+            var bookings = _bookingRepository.Search().ToList();
+
+            return bookings;
         }
     }
 }

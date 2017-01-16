@@ -23,19 +23,10 @@ namespace MrWhiteLaundryBooker.Controllers
 
         [Route("")]
         [HttpGet]
-        [AllowAnonymous]
         // GET: api/Boookings
         public IEnumerable<Booking> Get()
         {
-            throw new NotImplementedException();
-        }
-
-        [Route("{id}")]
-        [HttpGet]
-        // GET: api/Boookings/5
-        public Booking Get([FromUri]int id)
-        {
-            throw new NotImplementedException();
+            return _bookingService.GetBookings();
         }
 
         [Route("")]
@@ -45,28 +36,16 @@ namespace MrWhiteLaundryBooker.Controllers
         {
             if (booking != null)
             {
-                booking.UserId =User.Identity.GetUserId();
+                booking.UserId = User.Identity.GetUserId();
             }
             try
             {
                 return _bookingService.Create(booking);
             }
-            catch(InvalidOperationException e)
+            catch (InvalidOperationException e)
             {
                 throw new HttpException((int)HttpStatusCode.Forbidden, e.Message);
             }
-        }
-
-        // PUT: api/Boookings/5
-        public void Put(int id, [FromBody]string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        // DELETE: api/Boookings/5
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
