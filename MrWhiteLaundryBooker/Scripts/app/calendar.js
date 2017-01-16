@@ -2,7 +2,7 @@
     return {
         restrict: 'E',
         templateUrl: '../Scripts/app/templates/calendar.html',
-        require: "^ngController",
+        require: '^ngController',
         scope: {
             selected : '='
         },
@@ -15,8 +15,12 @@
             _buildMonth(scope, start, scope.month);
 
             scope.select = function (day) {
-                scope.selected = day.date;
-                parentController.setSelected(day);
+                if (day.date.month() === scope.month.month()) {
+                    scope.selected = day.date;
+                    parentController.setSelected(day);
+                } else {
+                    alert('You can anly select days in the current month')
+                }
             };           
         }
     }
@@ -30,7 +34,7 @@
         var done = false, date = start.clone(), monthIndex = date.month(), count = 0;
         while (!done) {
             scope.weeks.push({ days: _buildWeek(date.clone(), month) });
-            date.add(1, "w");
+            date.add(1, 'w');
             done = count++ > 3;
             monthIndex = date.month();
         }
@@ -40,14 +44,14 @@
         var days = [];
         for (var i = 0; i < 7; i++) {
             days.push({
-                name: date.format("dd").substring(0, 1),
+                name: date.format('dd').substring(0, 1),
                 number: date.date(),
                 isCurrentMonth: date.month() === month.month(),
-                isToday: date.isSame(new Date(), "day"),
+                isToday: date.isSame(new Date(), 'day'),
                 date: date
             });
             date = date.clone();
-            date.add(1, "d");
+            date.add(1, 'd');
         }
         return days;
     }

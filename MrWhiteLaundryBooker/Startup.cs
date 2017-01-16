@@ -9,6 +9,7 @@ namespace MrWhiteLaundryBooker
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            ConfigureAutofac(app);
         }
     }
 }

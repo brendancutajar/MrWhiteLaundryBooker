@@ -1,17 +1,26 @@
-﻿using MrWhiteLaundryBooker.Models;
+﻿using Microsoft.AspNet.Identity;
+using MrWhiteLaundryBooker.Models;
+using MrWhiteLaundryBooker.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Web;
 using System.Web.Http;
+using System.Web.Routing;
 
 namespace MrWhiteLaundryBooker.Controllers
 {
     [Authorize]
-    [RoutePrefix("bookings")]
+    [RoutePrefix("api/bookings")]
     public class BoookingController : ApiController
     {
+        private readonly IBookingService _bookingService;
+
+        public BoookingController(IBookingService bookingService)
+        {
+            _bookingService = bookingService;
+        }
+
         [Route("")]
         [HttpGet]
         [AllowAnonymous]
@@ -21,29 +30,40 @@ namespace MrWhiteLaundryBooker.Controllers
             throw new NotImplementedException();
         }
 
-        [Route("")]
+        [Route("{id}")]
         [HttpGet]
-        // GET: api/Boooking/5
-        public Booking Get(int id)
+        // GET: api/Boookings/5
+        public Booking Get([FromUri]int id)
         {
             throw new NotImplementedException();
         }
 
         [Route("")]
         [HttpPost]
-        // POST: api/Boooking
-        public void Post([FromBody]Booking value)
+        // POST: api/Boookings
+        public Booking Post([FromBody]Booking booking)
         {
-            throw new NotImplementedException();
+            if (booking != null)
+            {
+                booking.UserId =User.Identity.GetUserId();
+            }
+            try
+            {
+                return _bookingService.Create(booking);
+            }
+            catch(InvalidOperationException e)
+            {
+                throw new HttpException((int)HttpStatusCode.Forbidden, e.Message);
+            }
         }
 
-        // PUT: api/Boooking/5
+        // PUT: api/Boookings/5
         public void Put(int id, [FromBody]string value)
         {
             throw new NotImplementedException();
         }
 
-        // DELETE: api/Boooking/5
+        // DELETE: api/Boookings/5
         public void Delete(int id)
         {
             throw new NotImplementedException();

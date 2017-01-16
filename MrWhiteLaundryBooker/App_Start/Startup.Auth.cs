@@ -6,6 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using MrWhiteLaundryBooker.Models;
+using Autofac;
+using System.Web.Http;
+using Autofac.Integration.WebApi;
 
 namespace MrWhiteLaundryBooker
 {
@@ -63,6 +66,19 @@ namespace MrWhiteLaundryBooker
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+        }
+
+        public void ConfigureAutofac(IAppBuilder app)
+        {
+            var builder = new ContainerBuilder();
+            
+            builder.RegisterModule<LaundryBookerModule>();
+
+            var container = builder.Build();
+
+            app.UseAutofacMiddleware(container);
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
         }
     }
 }
