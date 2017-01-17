@@ -4,13 +4,11 @@
 
 <div class="jumbotron">
     <h1>Mr White's Laundry Booker</h1>
-    @*<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 </div>
 
 <div class="row" ng-app="LaundryBooker">
     <div class="col-md-6" ng-controller="calendarCtrl">
-        <calendar selected="day" ></calendar>
+        <calendar selected="day" bookings="bookings" ></calendar>
     </div>
 </div>
 

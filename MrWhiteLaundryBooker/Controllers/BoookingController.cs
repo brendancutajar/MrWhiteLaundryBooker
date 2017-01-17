@@ -14,9 +14,9 @@ namespace MrWhiteLaundryBooker.Controllers
     [RoutePrefix("api/bookings")]
     public class BoookingController : ApiController
     {
-        private readonly IBookingService _bookingService;
+        private readonly BookingService _bookingService;
 
-        public BoookingController(IBookingService bookingService)
+        public BoookingController(BookingService bookingService)
         {
             _bookingService = bookingService;
         }

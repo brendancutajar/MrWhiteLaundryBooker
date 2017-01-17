@@ -4,7 +4,8 @@
         templateUrl: '../Scripts/app/templates/calendar.html',
         require: '^ngController',
         scope: {
-            selected : '='
+            selected: '=',
+            bookings: '='
         },
         link: function (scope, elem, attrs, parentController) {
             scope.selected = _removeTime(scope.selected || moment());
@@ -47,7 +48,7 @@
                 name: date.format('dd').substring(0, 1),
                 number: date.date(),
                 isCurrentMonth: date.month() === month.month(),
-                isToday: date.isSame(new Date(), 'day'),
+                isToday: date.isSame(moment(), 'day'),                
                 date: date
             });
             date = date.clone();

@@ -13,8 +13,15 @@ namespace MrWhiteLaundryBooker
 
             builder.RegisterType<LaundryBookerContext>().AsSelf().InstancePerDependency();
 
-            builder.RegisterType<BookingRepository>().As<IBookingRepository>().InstancePerDependency();
-            builder.RegisterType<BookingService>().As<IBookingService>().InstancePerDependency();
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Repository"))
+                .AsSelf()
+                .InstancePerDependency();
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsSelf()
+                .InstancePerDependency();
+
         }
     }
 }

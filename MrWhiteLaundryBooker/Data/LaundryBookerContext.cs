@@ -11,5 +11,7 @@ namespace MrWhiteLaundryBooker.Data
         }
 
         public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<BookingUser> BookingUsers { get; set; }
     }
 }

@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MrWhiteLaundryBooker.Models;
+using System.Data.Entity;
 
 namespace MrWhiteLaundryBooker.Services
 {
-    public class BookingService : IBookingService
+    public class BookingService 
     {
-        private readonly IBookingRepository _bookingRepository;
+        private readonly BookingRepository _bookingRepository;
 
-        public BookingService(IBookingRepository bookingRepository)
+        public BookingService(BookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
         }
@@ -31,7 +32,7 @@ namespace MrWhiteLaundryBooker.Services
 
         public IList<Booking> GetBookings()
         {
-            var bookings = _bookingRepository.Search().ToList();
+            var bookings = _bookingRepository.Search().Include(booking=>booking.User).ToList();
 
             return bookings;
         }

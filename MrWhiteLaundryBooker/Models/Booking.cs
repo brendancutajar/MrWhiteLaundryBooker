@@ -13,6 +13,8 @@ namespace MrWhiteLaundryBooker.Models
 
         public DateTime Date { get; set; }
 
-        public bool IsThirdOfDay { get; set; }       
+        public bool IsThirdOfDay { get; set; }
+
+        public BookingUser User { get; set; }
     }
 }

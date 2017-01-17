@@ -227,11 +227,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookingUserController.cs" />
     <Compile Include="Controllers\BoookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Data\BaseRepository.cs" />
+    <Compile Include="Data\BookingUserRepository.cs" />
     <Compile Include="Data\BookingRepository.cs" />
-    <Compile Include="Data\IBookingRepository.cs" />
     <Compile Include="Data\LaundryBookerContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,11 +241,11 @@
     <Compile Include="LaundryBookerModule.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\BookingUser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BookingService.cs" />
-    <Compile Include="Services\Interface1.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
